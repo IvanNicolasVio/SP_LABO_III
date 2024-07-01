@@ -93,3 +93,4 @@ export async function EliminarTodo() {
     });
 }
 
+nose = nose2;
