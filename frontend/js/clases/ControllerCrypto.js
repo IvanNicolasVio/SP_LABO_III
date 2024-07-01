@@ -92,5 +92,3 @@ export async function EliminarTodo() {
         xhr.send();
     });
 }
-
-nose = nose2;
