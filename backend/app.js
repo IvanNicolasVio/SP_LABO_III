@@ -67,7 +67,7 @@ let items = [
 
 // Middleware para simular una demora de 3 segundos
 const simulateDelay = (req, res, next) => {
-    setTimeout(next, 500);
+    setTimeout(next, 3000);
 };
 
 /**
