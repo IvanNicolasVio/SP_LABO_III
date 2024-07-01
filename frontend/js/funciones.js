@@ -35,3 +35,12 @@ export function ValidadorNumero(numero) {
   return Number.isInteger(number) && numero.trim() !== '';
 }
 
+
+export function convertirAMinusculas(lista) {
+  lista.forEach(item => {
+    item.consenso = item.consenso.toLowerCase();
+    item.algoritmo = item.algoritmo.toLowerCase();
+  });
+
+  return lista;
+}

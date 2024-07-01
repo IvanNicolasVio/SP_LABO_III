@@ -1,4 +1,4 @@
-import { ValidadorNumero,darDia,crearSpinner,borrarSpinner } from "./funciones.js";
+import { ValidadorNumero,darDia,crearSpinner,borrarSpinner,convertirAMinusculas } from "./funciones.js";
 import {TraerTabla,CrearUna,EditarPorId,EliminarPorId,EliminarTodo } from "./clases/ControllerCrypto.js";
 const formulario = document.getElementById("tabla_carga");
 const form_muestra = document.getElementById("form_muestra");
@@ -57,6 +57,7 @@ function completarPromedios(){
     select_promedio.addEventListener("change", async (event) => {
         crearSpinner();
         const listaCrypto = await TraerTabla();
+        const nuevaLista = convertirAMinusculas(listaCrypto);
         const valor = select_promedio.value;
         if(valor == "sin_filtro"){
             resultado_promedio.value = "N/A";
@@ -91,15 +92,17 @@ async function crearTabla() {
     try {
         crearSpinner();
         const listaCrypto = await TraerTabla();
-        alternarForm(listaCrypto);
-        if (listaCrypto.length === 0) return;
-        const keys = Object.keys(listaCrypto[0]);
+        const nuevaLista = convertirAMinusculas(listaCrypto);
+        console.log(nuevaLista);
+        alternarForm(nuevaLista);
+        if (nuevaLista.length === 0) return;
+        const keys = Object.keys(nuevaLista[0]);
         keys.forEach(key => {
             const th = document.createElement("th");
             th.textContent = key.charAt(0).toUpperCase() + key.slice(1);
             tablaHeaders.appendChild(th);
         });
-        listaCrypto.forEach(crypto => {
+        nuevaLista.forEach(crypto => {
             const fila = document.createElement("tr");
             keys.forEach(key => {
                 const td = document.createElement("td");
